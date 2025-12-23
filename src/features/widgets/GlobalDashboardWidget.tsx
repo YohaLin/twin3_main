@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Target, Clock, CheckCircle, TrendingUp, ChevronRight, Smartphone, ClipboardList, Utensils, Zap, Users, Monitor, Shield, Award, Lock, Plus } from 'lucide-react';
+import { Target, ChevronRight, Lock, Plus } from 'lucide-react';
 
 interface GlobalDashboardWidgetProps {
     onViewTask?: (taskId: string) => void;

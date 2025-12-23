@@ -18,7 +18,7 @@ export const ChatLayout: React.FC = () => {
     const [selectedTask, setSelectedTask] = useState<TaskOpportunityPayload | null>(null);
     const [showDevConsole, setShowDevConsole] = useState(false);
     const [isVerified, setIsVerified] = useState(false);
-    const [pendingTaskId, setPendingTaskId] = useState<string | null>(null);
+
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLTextAreaElement>(null);
     const hasStarted = useRef(false);
@@ -207,7 +207,7 @@ export const ChatLayout: React.FC = () => {
         if (!isVerified) {
             // Store pending task and redirect to verification
             if (selectedTask) {
-                setPendingTaskId(selectedTask.title);
+                // setPendingTaskId(selectedTask.title); // Removed legacy logic
             }
             setSelectedTask(null);
             triggerResponse(null, 'verification_required', false);
