@@ -12,26 +12,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         response: {
             text: "Welcome to the twin3 community!\n\ntwin3 transforms your social influence into a verifiable digital identity.\nAI analyzes your content style and engagement to unlock exclusive brand collaborations.\n\nClick the suggestions below or ask me anything about twin3!",
             delay: 800,
-            card: {
-                type: 'feature_grid',
-                features: [
-                    {
-                        icon: 'target',
-                        title: 'Discover Your Value',
-                        description: 'AI analyzes your unique influence and generates your Twin Matrix Score (0-255)'
-                    },
-                    {
-                        icon: 'handshake',
-                        title: 'Match Brand Tasks',
-                        description: 'Higher scores unlock premium brand collaborations with better rewards'
-                    },
-                    {
-                        icon: 'stars',
-                        title: 'Build Digital Assets',
-                        description: 'Transform your influence into portable proof of authenticity for the AI era'
-                    }
-                ]
-            }
+            widget: 'feature_grid'
         },
         suggestedActions: [
             { label: 'Get Started', payload: 'verify_human' },
@@ -240,6 +221,38 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         },
         suggestedActions: [
             { label: 'Browse More Tasks', payload: 'browse_tasks' }
+        ]
+    },
+
+    // ============================================================
+    // 7. PROOF OF HUMANITY TASK
+    // ============================================================
+    {
+        id: 'proof_of_humanity',
+        triggers: ['proof of humanity', 'humanity'],
+        response: {
+            text: "**Proof of Humanity**\n\nThis verification task helps establish your authentic human identity.\n\n**Requirements:**\n1. Connect Instagram account\n2. Connect LinkedIn (optional)\n3. Complete WorldCoin verification\n\n**Reward:** 100 $twin3\n\nReady to start?",
+            delay: 500
+        },
+        suggestedActions: [
+            { label: 'Start Verification', payload: 'verify_human' },
+            { label: 'Back to Dashboard', payload: 'dashboard' }
+        ]
+    },
+
+    // ============================================================
+    // 8. SHARE ON X TASK
+    // ============================================================
+    {
+        id: 'share_on_x',
+        triggers: ['share on x', 'twitter', 'share matrix'],
+        response: {
+            text: "**Share Your Twin Matrix on X**\n\nShare your Twin Matrix visualization on X (Twitter) to unlock rewards!\n\n**Requirements:**\n1. Generate your Twin Matrix\n2. Post on X with hashtag #twin3\n3. Submit proof of post\n\n**Reward:** 200 $twin3\n**Deadline:** 24 hours left",
+            delay: 500
+        },
+        suggestedActions: [
+            { label: 'View Twin Matrix', payload: 'twin_matrix' },
+            { label: 'Back to Dashboard', payload: 'dashboard' }
         ]
     },
 
