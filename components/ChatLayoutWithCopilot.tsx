@@ -530,49 +530,51 @@ export default function ChatLayoutWithCopilot() {
               ];
 
               return (
-                <div
-                  key={msg.id}
-                  className="animate-fade-in"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                    gap: "var(--space-md)",
-                    margin: "var(--space-md) 0",
-                  }}
-                >
-                  {features.map((feat, idx) => (
-                    <div
-                      key={idx}
-                      className="glass glass-hover"
-                      style={{
-                        padding: "var(--space-lg)",
-                        borderRadius: "var(--radius-lg)",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "var(--space-sm)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <feat.icon size={24} color="var(--color-primary)" />
-                      <h3
+                <div key={msg.id}>
+                  <MessageBubble message={msg} />
+                  <div
+                    className="animate-fade-in"
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                      gap: "var(--space-md)",
+                      margin: "var(--space-md) 0",
+                    }}
+                  >
+                    {features.map((feat, idx) => (
+                      <div
+                        key={idx}
+                        className="glass glass-hover"
                         style={{
-                          fontSize: "15px",
-                          fontWeight: 600,
-                          color: "var(--color-text-primary)",
+                          padding: "var(--space-lg)",
+                          borderRadius: "var(--radius-lg)",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "var(--space-sm)",
+                          cursor: "pointer",
                         }}
                       >
-                        {feat.title}
-                      </h3>
-                      <p
-                        style={{
-                          fontSize: "13px",
-                          color: "var(--color-text-secondary)",
-                        }}
-                      >
-                        {feat.desc}
-                      </p>
-                    </div>
-                  ))}
+                        <feat.icon size={24} color="var(--color-primary)" />
+                        <h3
+                          style={{
+                            fontSize: "15px",
+                            fontWeight: 600,
+                            color: "var(--color-text-primary)",
+                          }}
+                        >
+                          {feat.title}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: "13px",
+                            color: "var(--color-text-secondary)",
+                          }}
+                        >
+                          {feat.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               );
             }
@@ -700,7 +702,7 @@ export default function ChatLayoutWithCopilot() {
                   className="animate-fade-in-scale"
                   style={{ maxWidth: "900px" }}
                 >
-                  {msg.content && <MessageBubble message={msg} />}
+                  <MessageBubble message={msg} />
                   {widgetComponent}
                 </div>
               ) : (

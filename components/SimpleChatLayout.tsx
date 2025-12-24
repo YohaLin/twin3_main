@@ -32,7 +32,6 @@ import {
 } from "../features/widgets";
 import {
   findNodeFromInput,
-  generateContextualSuggestions,
 } from "../services/copilotService";
 
 export default function SimpleChatLayout() {
@@ -50,7 +49,6 @@ export default function SimpleChatLayout() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const hasStarted = useRef(false);
-  const processedMessageIds = useRef(new Set<string>());
   const messageIdCounter = useRef(0);
 
   // Generate unique message ID
@@ -256,7 +254,14 @@ export default function SimpleChatLayout() {
             timestamp: Date.now(),
           };
           setMessages([welcomeMsg]);
-          setSuggestions(welcomeNode.response.suggestions || []);
+
+          // Convert suggestedActions to Suggestions format
+          const convertedSuggestions = (welcomeNode.suggestedActions || []).map((action, index) => ({
+            id: `${welcomeNode.id}-suggestion-${index}`,
+            text: action.label,
+            action: action.payload
+          }));
+          setSuggestions(convertedSuggestions);
           devLog("info", "Welcome message displayed");
         }, 500);
       }
@@ -312,7 +317,14 @@ export default function SimpleChatLayout() {
       };
 
       setMessages((prev) => [...prev, aiMsg]);
-      setSuggestions(node.response.suggestions || []);
+
+      // Convert suggestedActions to Suggestions format
+      const convertedSuggestions = (node.suggestedActions || []).map((action, index) => ({
+        id: `${node.id}-suggestion-${index}`,
+        text: action.label,
+        action: action.payload
+      }));
+      setSuggestions(convertedSuggestions);
       setIsTyping(false);
 
       if (node.id === "verification_success") {
@@ -424,6 +436,7 @@ export default function SimpleChatLayout() {
 
   const handleInstagramVerified = (
     username: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     followersCount: number
   ) => {
     devLog("success", `Instagram verified: @${username}`);
@@ -851,26 +864,33 @@ export default function SimpleChatLayout() {
               ];
 
               return (
-                <div
-                  key={msg.id}
-                  className="animate-fade-in"
-                  style={{
-                    textAlign: "center",
-                    padding: "60px 20px 40px",
-                    maxWidth: "1200px",
-                    margin: "0 auto",
-                  }}
-                >
-                  <h1
+                <div key={msg.id} style={{ width: '100%' }}>
+                  <div style={{
+                    maxWidth: '900px',
+                    margin: '0 auto',
+                    padding: '0 var(--space-lg)'
+                  }}>
+                    <MessageBubble message={msg} />
+                  </div>
+                  <div
+                    className="animate-fade-in"
                     style={{
-                      fontSize: "56px",
-                      fontWeight: 700,
-                      color: "var(--color-text-primary)",
-                      marginBottom: "24px",
-                      lineHeight: 1.1,
+                      textAlign: "center",
+                      padding: "20px 20px 40px",
+                      maxWidth: "1200px",
+                      margin: "0 auto",
                     }}
                   >
-                    {msg.content.split("\n\n")[0]}
+                    <h1
+                      style={{
+                        fontSize: "56px",
+                        fontWeight: 700,
+                        color: "var(--color-text-primary)",
+                        marginBottom: "24px",
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      Welcome to twin3
                   </h1>
                   <p
                     style={{
@@ -959,6 +979,7 @@ export default function SimpleChatLayout() {
                         </p>
                       </div>
                     ))}
+                  </div>
                   </div>
                 </div>
               );
@@ -1083,7 +1104,7 @@ export default function SimpleChatLayout() {
                   className="animate-fade-in-scale"
                   style={{ maxWidth: "900px" }}
                 >
-                  {msg.content && <MessageBubble message={msg} />}
+                  <MessageBubble message={msg} />
                   {widgetComponent}
                 </div>
               ) : (
@@ -1146,7 +1167,7 @@ export default function SimpleChatLayout() {
               <button
                 key={sug.id}
                 className="chip"
-                onClick={() => triggerResponse(sug.text, null, false)}
+                onClick={() => triggerResponse(null, sug.action || null, false)}
               >
                 {sug.text}
               </button>

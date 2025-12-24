@@ -19,10 +19,10 @@ const parseMarkdown = (text: string): string => {
 
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
     const isUser = message.role === 'user';
-    const parsedContent = parseMarkdown(message.content);
+    const parsedContent = parseMarkdown(message.content || '');
 
     return (
-        <div className="animate-fade-in" style={{
+        <div style={{
             display: 'flex',
             justifyContent: isUser ? 'flex-end' : 'flex-start',
             marginBottom: '16px',

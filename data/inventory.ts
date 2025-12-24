@@ -10,7 +10,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'welcome',
         triggers: ['start', 'hi', 'hello', 'menu'],
         response: {
-            text: "Welcome to the twin3 community!\n\ntwin3 transforms your social influence into a verifiable digital identity.\nAI analyzes your content style and engagement to unlock exclusive brand collaborations.\n\nClick the suggestions below or ask me anything about twin3!",
+            text: "👋 **Welcome to twin3!**\n\nI'm your AI assistant, here to help you discover your influence value and connect with brand opportunities.\n\nLet me show you what twin3 can do for you:",
             delay: 800,
             widget: 'feature_grid'
         },
@@ -44,14 +44,13 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'twin_matrix',
         triggers: ['matrix', 'twin matrix', '256d', 'profile'],
         response: {
-            text: "Here's your Twin Matrix — a 256-dimensional representation of your authentic self across 6 core dimensions. This forms the foundation of your soulbound identity in the AI era.",
+            text: "✨ **Your Twin Matrix**\n\nThis is your unique digital fingerprint — a 256-dimensional representation of your authentic self.\n\n**What it measures:**\n• Content style & creativity\n• Audience engagement\n• Authenticity score\n• Influence reach\n• Brand alignment\n• Community trust\n\nYour Twin Matrix unlocks personalized brand matches:",
             delay: 600,
             widget: 'twin_matrix'
         },
         suggestedActions: [
-            { label: 'Mint SBT', payload: 'mint_sbt' },
-            { label: 'Verify Account', payload: 'verify_human' },
-            { label: 'Browse Tasks', payload: 'browse_tasks' }
+            { label: 'Browse Tasks', payload: 'browse_tasks' },
+            { label: 'View Dashboard', payload: 'dashboard' }
         ]
     },
 
@@ -62,7 +61,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'verify_human',
         triggers: ['verify', 'verification', 'prove', 'human'],
         response: {
-            text: "**Connect Your Instagram**\nVerify your account to unlock personalized tasks and discover your influence value.",
+            text: "Great! Let's get you verified.\n\n**Why Verify?**\n✓ Unlock personalized brand tasks\n✓ Discover your influence value\n✓ Access premium rewards\n\nConnect your Instagram below to get started:",
             delay: 500,
             widget: 'instagram_connect'
         },
@@ -76,7 +75,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'verification_required',
         triggers: [],
         response: {
-            text: "**📍 Recommended for You**\n\nComplete **Proof of Humanity** first to boost your score and unlock premium tasks!\n\nConnect your Instagram to verify your identity:",
+            text: "Hold on! 🔒\n\nTo access brand tasks, you'll need to verify your account first.\n\n**Quick Verification** takes less than 30 seconds:\n✓ Connect Instagram\n✓ Get your Twin Matrix Score\n✓ Unlock all tasks\n\nLet's get you verified:",
             delay: 600,
             widget: 'instagram_connect',
             suggestions: []
@@ -91,7 +90,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'verification_success',
         triggers: ['verified', 'success'],
         response: {
-            text: "✅ **Verification Complete!**\n\nYour Instagram is now linked. Let's see your Twin Matrix Score!",
+            text: "🎉 **Welcome to twin3!**\n\nYour Instagram has been successfully verified!\n\nNow let me show you your unique Twin Matrix Score — a 256-dimensional identity that represents your authentic digital self.",
             delay: 500,
             widget: 'twin_matrix'
         },
@@ -108,7 +107,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'browse_tasks',
         triggers: ['task', 'browse', 'jobs'],
         response: {
-            text: "**📍 Recommended for You**\n\nComplete **Proof of Humanity** first to boost your score and unlock premium tasks!\n\nHere are the current brand task opportunities:",
+            text: "🎯 **Brand Tasks For You**\n\nBased on your profile, here are personalized brand collaboration opportunities.\n\nEach task is matched to your influence style and audience. Click any card to see full details:",
             delay: 500,
             card: {
                 type: 'task_opportunity',
@@ -147,7 +146,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'view_task_detail',
         triggers: ['detail', 'details', 'view'],
         response: {
-            text: "Here is the full task description:",
+            text: "📋 **Task Details**\n\nHere's everything you need to know about this collaboration.\n\nReview the requirements carefully before accepting:",
             delay: 500,
             card: {
                 type: 'task_detail',
@@ -184,7 +183,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'accept_task',
         triggers: ['accept', 'confirm'],
         response: {
-            text: "Great! You have successfully accepted this task!\n\nUse the dashboard below to track your progress and submit your work.",
+            text: "🎉 **Task Accepted!**\n\nAwesome! You're all set to start working on this collaboration.\n\n**Next Steps:**\n1. Review the task requirements\n2. Create your content\n3. Submit for review\n\nTrack your progress below:",
             delay: 800,
             widget: 'active_task'
         },
@@ -200,11 +199,12 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'decline_task',
         triggers: ['decline', 'skip', 'no'],
         response: {
-            text: "No problem! This task has been skipped.\n\nThere are other tasks available. Would you like to see them?",
+            text: "No worries! 👍\n\nThis task isn't the right fit — that's totally fine.\n\nWe have many other brand collaborations available. Want to explore more options?",
             delay: 500
         },
         suggestedActions: [
-            { label: 'View Other Tasks', payload: 'browse_tasks' }
+            { label: 'View Other Tasks', payload: 'browse_tasks' },
+            { label: 'View Dashboard', payload: 'dashboard' }
         ]
     },
 
@@ -215,12 +215,13 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'dashboard',
         triggers: ['dashboard', 'my tasks', 'status'],
         response: {
-            text: "Here is your task dashboard:",
+            text: "📊 **Your Dashboard**\n\nHere's an overview of all your active tasks, completed work, and earnings.\n\nClick on any task to view details or submit your work:",
             delay: 500,
             widget: 'global_dashboard'
         },
         suggestedActions: [
-            { label: 'Browse More Tasks', payload: 'browse_tasks' }
+            { label: 'Browse More Tasks', payload: 'browse_tasks' },
+            { label: 'View Twin Matrix', payload: 'twin_matrix' }
         ]
     },
 
@@ -231,7 +232,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'proof_of_humanity',
         triggers: ['proof of humanity', 'humanity'],
         response: {
-            text: "**Proof of Humanity**\n\nThis verification task helps establish your authentic human identity.\n\n**Requirements:**\n1. Connect Instagram account\n2. Connect LinkedIn (optional)\n3. Complete WorldCoin verification\n\n**Reward:** 100 $twin3\n\nReady to start?",
+            text: "🔐 **Proof of Humanity**\n\nThis foundational task establishes your authentic human identity in the twin3 ecosystem.\n\n**Why it matters:**\n• Unlocks premium brand collaborations\n• Boosts your Twin Matrix Score\n• Builds trust with brands\n\n**Requirements:**\n1. ✓ Connect Instagram account\n2. Connect LinkedIn (optional, +bonus)\n3. Complete WorldCoin verification (optional)\n\n**Reward:** 100 $twin3\n\nReady to get verified?",
             delay: 500
         },
         suggestedActions: [
@@ -247,7 +248,7 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'share_on_x',
         triggers: ['share on x', 'twitter', 'share matrix'],
         response: {
-            text: "**Share Your Twin Matrix on X**\n\nShare your Twin Matrix visualization on X (Twitter) to unlock rewards!\n\n**Requirements:**\n1. Generate your Twin Matrix\n2. Post on X with hashtag #twin3\n3. Submit proof of post\n\n**Reward:** 200 $twin3\n**Deadline:** 24 hours left",
+            text: "🐦 **Share Your Twin Matrix on X**\n\nSpread the word about your unique digital identity and earn rewards!\n\n**What to do:**\n1. Generate your Twin Matrix (if you haven't)\n2. Post the visualization on X\n3. Include hashtag #twin3\n4. Submit your post URL\n\n**Reward:** 200 $twin3\n⏰ **Deadline:** 24 hours remaining\n\nReady to share?",
             delay: 500
         },
         suggestedActions: [
@@ -263,12 +264,13 @@ export const INTERACTION_INVENTORY: InteractionInventory = [
         id: 'fallback',
         triggers: [],
         response: {
-            text: "Sorry, I don't quite understand.\n\nPlease try the options below:",
+            text: "Hmm, I'm not sure I understand that yet. 🤔\n\nI can help you with:\n• Viewing brand tasks\n• Checking your dashboard\n• Understanding your Twin Matrix\n• Verifying your account\n\nWhat would you like to do?",
             delay: 300
         },
         suggestedActions: [
             { label: 'View Tasks', payload: 'browse_tasks' },
-            { label: 'Dashboard', payload: 'dashboard' }
+            { label: 'Dashboard', payload: 'dashboard' },
+            { label: 'Twin Matrix', payload: 'twin_matrix' }
         ]
     }
 ];
